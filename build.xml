@@ -11,7 +11,7 @@
       </classpath>
   </taskdef>
 	
-  <target name="deploy" depends="testpmd">
+  <target name="deploy">
     <replace file="src/src/package.xml"
        token="&lt;namespacePrefix&gt;ts2sourcing&lt;/namespacePrefix&gt;"
        value="" />	    
