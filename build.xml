@@ -1,0 +1,21 @@
+<project name="Deploy to QA" default="deploy" xmlns:sf="antlib:com.salesforce">
+    <property environment="env"/>
+
+    <condition property="username" value=""> <not> <isset property="username"/> </not> </condition>
+    <condition property="password" value=""> <not> <isset property="password"/> </not> </condition>
+    <condition property="testlevel" value=""> <not> <isset property="testlevel"/> </not> </condition>
+
+  <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+      <classpath>
+            <pathelement location="ant-salesforce.jar" />        	
+      </classpath>
+  </taskdef>
+	
+  <target name="deploy" depends="testpmd">
+    <replace file="src/src/package.xml"
+       token="&lt;namespacePrefix&gt;ts2sourcing&lt;/namespacePrefix&gt;"
+       value="" />	    
+    <sf:deploy username="${username}" password="${password}" serverurl="${serverurl}" testlevel="${testlevel}" deployRoot="src/src"/>
+  </target>
+  
+</project>
